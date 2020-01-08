@@ -1,7 +1,5 @@
 import csv
 import MySQLdb
-import sys
-import pandas as pd
 from datetime import datetime, date
 input_file = "data/supplier_data.csv"
 # Connect to a MySQL database
