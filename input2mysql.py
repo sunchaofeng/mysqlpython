@@ -1,7 +1,10 @@
 import csv
 import MySQLdb
 from datetime import datetime, date
+import CreateDatabase
 input_file = "data/supplier_data.csv"
+#新建数据库
+CreateDatabase.cre_db('my_suppliers')
 # Connect to a MySQL database
 con = MySQLdb.connect(host='127.0.0.1',
 					  port=3306,
@@ -13,7 +16,16 @@ con = MySQLdb.connect(host='127.0.0.1',
 c = con.cursor()
 file_reader = csv.reader(open(input_file, 'r'), delimiter=',')
 header = next(file_reader)
-
+#新建表
+# 创建数据表SQL语句
+sql = """CREATE TABLE Suppliers (
+   `Supplier Name` TEXT ASCII,
+   `Invoice Number` TEXT ASCII,
+   `Part Number` TEXT ASCII,
+   Cost TEXT ASCII,
+   `Purchase Date` TEXT ASCII
+) ENGINE = InnoDB ROW_FORMAT = DEFAULT;"""
+c.execute(sql)
 #将csv数据写入数据库,写入之前要先建立数据库my_suppliers和表Suppliers以及列名和类型
 for row in file_reader:
 	data = []
