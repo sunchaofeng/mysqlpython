@@ -16,8 +16,7 @@ con = MySQLdb.connect(host='127.0.0.1',
 c = con.cursor()
 file_reader = csv.reader(open(input_file, 'r'), delimiter=',')
 header = next(file_reader)
-#新建表
-# 创建数据表SQL语句
+#新建表，创建数据表SQL语句从MySQL里面script复制的，保证不会出错
 sql = """CREATE TABLE Suppliers (
    `Supplier Name` TEXT ASCII,
    `Invoice Number` TEXT ASCII,
